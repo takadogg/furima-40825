@@ -20,16 +20,17 @@
 
 ## items テーブル
 
-| Column            | Type       | Options     |
-| ----------------- | ------     | ----------- |
-| name              | string     | null: false |
-| description       | text       | null: false |
-| price             | integer    | null: false |
-| image             | string     | null: false |
-| category          | string     | null: false |
-| condition         | string     | null: false |
-| sender_address    | string     | null: false |
-| seller            | references | null: false, foreign_key: true |
+| Column                 | Type       | Options     |
+| ---------------------- | ------     | ----------- |
+| name                   | string     | null: false |
+| description            | text       | null: false |
+| price                  | integer    | null: false |
+| category_id            | integer    | null: false |
+| condition_id           | integer    | null: false |
+| sender_address_id      | integer    | null: false |
+| shipping_fee_burden_id | integer    | null: false |
+| shipping_days_id       | integer    | null: false |
+| user                   | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -38,29 +39,30 @@
 
 ## purchase_records テーブル
 
-| Column              | Type       | Options                        |
-| ------------------- | ---------- | ------------------------------ |
-| transaction_date    | datetime   | null: false |
-| item                | references | null: false, foreign_key: true |
-| buyer               | references | null: false, foreign_key: true |
-| sipping_address     | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| item   | references | null: false, foreign_key: true |
+| user   | references | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one    :addresses
+- has_one    :address
 
 ## addresses テーブル
 
-| Column        | Type       | Options     |
-| ------------- | ---------- | ----------- |
-| postal_code   | string     | null: false |
-| city          | string     | null: false |
-| address_line1 | string     | null: false |
-| address_line2 | string     |             |
-| phone_number  | string     | null: false |
+| Column          | Type       | Options     |
+| --------------- | ---------- | ----------- |
+| prefecture_id   | integer    | null: false |
+| postal_code     | string     | null: false |
+| city            | string     | null: false |
+| address_line1   | string     | null: false |
+| address_line2   | string     |             |
+| phone_number    | string     | null: false |
+| purchase_record | references | null: false, foreign_key: true |
+
 
 
 ### Association
