@@ -9,8 +9,9 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipping_day
 
-  validates :name, :description, presence: true
+  validates :name, :description, :image, presence: true
   validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
