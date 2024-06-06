@@ -50,9 +50,9 @@ class ItemsController < ApplicationController
   end
 
   def ensure_correct_user
-    unless @item.user_id == current_user.id
+    unless @item.user_id == current_user.id && @item.purchase_record.nil?
       redirect_to root_path
     end
   end
-
+  
 end
